@@ -1,7 +1,7 @@
 import sqlite3
 
 # Maak verbinding met de database (dit maakt de database aan als deze nog niet bestaat)
-conn = sqlite3.connect('hashing.db')
+conn = sqlite3.connect('wachtwoord.db')
 
 # Maak een cursor-object
 cursor = conn.cursor()

@@ -15,11 +15,12 @@ def submit():
     password = request.form['password']
 
     # Maak verbinding met de SQLite database
-    conn = sqlite3.connect('hashing.db')
+    conn = sqlite3.connect('wachtwoord.db', timeout=10, check_same_thread=False)
+
     cursor = conn.cursor()
 
     # Voeg de nieuwe gebruiker toe aan de database zonder hashing
-    cursor.execute('INSERT INTO users (email, password) VALUES (?, ?)', (username, password))
+    cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
 
     # Sla de wijzigingen op en sluit de verbinding
     conn.commit()
@@ -29,4 +30,4 @@ def submit():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5004, host='0.0.0.0')
+    app.run(debug=True, port=5004)
